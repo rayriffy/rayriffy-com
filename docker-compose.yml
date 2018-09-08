@@ -1,0 +1,64 @@
+version: '3'
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
+services:
+  certbot:
+    image: adferrand/letsencrypt-dns
+    container_name: certbot
+    restart: unless-stopped
+    environment:
+      - LETSENCRYPT_USER_MAIL=${LETSENCRYPT_EMAIL}
+      - LEXICON_PROVIDER=cloudflare
+      - LEXICON_CLOUDFLARE_USERNAME=${CLOUDFLARE_USER}
+      - LEXICON_CLOUDFLARE_TOKEN=${CLOUDFLARE_TOKEN}
+    volumes:
+      - ./certbot/dist/domains.conf:/etc/letsencrypt/domains.conf
+    networks:
+      - backend
+  php-fpm-56:
+    build:
+      context: ./php-fpm/build/56
+      dockerfile: Dockerfile
+    container_name: php-fpm-56
+    ports:
+      - "9001:9000"
+    networks:
+      - backend
+  php-fpm-72:
+    build:
+      context: ./php-fpm/build/72
+      dockerfile: Dockerfile
+    container_name: php-fpm-72
+    ports:
+      - "9000:9000"
+    networks:
+      - backend
+  redis:
+   image: redis:4.0.11-alipine
+   ports:
+     - "6379:6379"
+   networks:
+     - backend
+  nginx:
+    image: nginx:1.15.3-alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf:/etc/nginx
+    depends_on:
+      - certbot
+      - php-fpm-56
+      - php-fpm-72
+    links:
+      - certbot
+    networks:
+      - frontend
+      - backend
