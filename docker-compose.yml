@@ -11,11 +11,8 @@ services:
     image: adferrand/letsencrypt-dns
     container_name: certbot
     restart: unless-stopped
-    environment:
-      - LETSENCRYPT_USER_MAIL=${LETSENCRYPT_EMAIL}
-      - LEXICON_PROVIDER=cloudflare
-      - LEXICON_CLOUDFLARE_USERNAME=${CLOUDFLARE_USER}
-      - LEXICON_CLOUDFLARE_TOKEN=${CLOUDFLARE_TOKEN}
+    env_file:
+      - ./certbot/build/env
     volumes:
       - ./certbot/dist/domains.conf:/etc/letsencrypt/domains.conf
     networks:
