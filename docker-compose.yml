@@ -5,6 +5,9 @@ networks:
     driver: bridge
   backend:
     driver: bridge
+    ipam:
+    config:
+      - subnet: 10.1.1.0/24
 
 services:
   certbot:
@@ -25,7 +28,8 @@ services:
     ports:
       - "9001:9000"
     networks:
-      - backend
+      backend:
+        ipv4_address: 10.1.1.2
   php-fpm-72:
     build:
       context: ./php-fpm/build/72
@@ -34,16 +38,18 @@ services:
     ports:
       - "9000:9000"
     networks:
-      - backend
+      backend:
+        ipv4_address: 10.1.1.3
   redis:
    image: redis:4.0.11-alpine
    ports:
      - "6379:6379"
    networks:
-     - backend
-  nginx:
+     backend:
+      ipv4_address: 10.1.1.4
+  proxy:
     image: nginx:1.15.3-alpine
-    container_name: nginx
+    container_name: proxy
     restart: unless-stopped
     ports:
       - "80:80"
@@ -58,4 +64,20 @@ services:
       - certbot
     networks:
       - frontend
-      - backend
+      backend:
+        ipv4_address: 10.1.1.1
+  # app:
+  #   build:
+  #     context: ./app/build
+  #     dockerfile: Dockerfile
+  #   container_name: app1
+  #   ports:
+  #     - "49152:49152"
+  #   volumes:
+  #     - ./app/dist/blog.rayriffy.com/web:/usr/share/nginx/html
+  #     - ./app/dist/blog.rayriffy.com/conf/
+  #   depends_on:
+  #     - proxy
+  #   network:
+  #     backend:
+  #       ipv4_address: 10.1.1.5
