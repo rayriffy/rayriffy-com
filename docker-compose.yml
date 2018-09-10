@@ -31,7 +31,7 @@ services:
       - "9001:9000"
     networks:
       backend:
-        ipv4_address: 10.1.1.2
+        ipv4_address: 10.1.1.3
     volumes:
       - ./web/data:/web
   php-fpm-72:
@@ -43,7 +43,7 @@ services:
       - "9000:9000"
     networks:
       backend:
-        ipv4_address: 10.1.1.3
+        ipv4_address: 10.1.1.4
     volumes:
       - ./web/data:/web
   redis:
@@ -52,7 +52,7 @@ services:
      - "6379:6379"
    networks:
      backend:
-      ipv4_address: 10.1.1.4
+      ipv4_address: 10.1.1.5
   proxy:
     image: nginx:1.15.3-alpine
     container_name: proxy
@@ -67,7 +67,7 @@ services:
     networks:
       frontend:
       backend:
-        ipv4_address: 10.1.1.1
+        ipv4_address: 10.1.1.2
   web-blog-rayriffy-com:
     build:
       context: ./web/build
