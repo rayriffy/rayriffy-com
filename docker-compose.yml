@@ -28,7 +28,7 @@ services:
       dockerfile: Dockerfile
     container_name: php-fpm-56
     ports:
-      - "9000:9000"
+      - "9001:9000"
     networks:
       backend:
         ipv4_address: 10.1.1.2
@@ -76,7 +76,7 @@ services:
     restart: unless-stopped
     environment:
       - SERVER_NAME=blog.rayriffy.com
-      - PHP_BACKEND=php-fpm-72
+      - PHP_BACKEND=php-fpm-72:9000
       - ROOT=/web/blog.rayriffy.com
     ports:
       - "8001:80"
