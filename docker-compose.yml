@@ -5,9 +5,6 @@ networks:
     driver: bridge
   backend:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 10.1.1.0/24
 
 services:
   certbot:
@@ -25,11 +22,8 @@ services:
       context: ./php-fpm/build/56
       dockerfile: Dockerfile
     container_name: php-fpm-56
-    ports:
-      - "9001:9000"
     networks:
-      backend:
-        ipv4_address: 10.1.1.13
+      - backend
     volumes:
       - ./web/data:/web
   php-fpm-72:
@@ -37,20 +31,14 @@ services:
       context: ./php-fpm/build/72
       dockerfile: Dockerfile
     container_name: php-fpm-72
-    ports:
-      - "9000:9000"
     networks:
-      backend:
-        ipv4_address: 10.1.1.14
+      - backend
     volumes:
       - ./web/data:/web
   redis:
-   image: redis:4.0.11-alpine
-   ports:
-     - "6379:6379"
-   networks:
-     backend:
-      ipv4_address: 10.1.1.15
+    image: redis:4.0.11-alpine
+    networks:
+      - backend
   proxy:
     image: nginx:1.15.3-alpine
     container_name: proxy
@@ -63,9 +51,8 @@ services:
     depends_on:
       - certbot
     networks:
-      frontend:
-      backend:
-        ipv4_address: 10.1.1.12
+      - frontend
+      - backend
   web-blog-rayriffy-com:
     build:
       context: ./web/build
@@ -75,10 +62,8 @@ services:
     environment:
       - PORT=8001
       - SERVER_NAME=blog.rayriffy.com
-      - PHP_BACKEND=10.1.1.14:9000
+      - PHP_BACKEND=php-fpm-72:9000
       - ROOT=/web/blog.rayriffy.com
-    ports:
-      - "8001:8001"
     depends_on:
       - php-fpm-72
     links:
@@ -86,5 +71,4 @@ services:
     volumes:
       - ./web/data/blog.rayriffy.com:/web/blog.rayriffy.com
     networks:
-      backend:
-        ipv4_address: 10.1.1.100
+      - backend
