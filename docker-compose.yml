@@ -11,9 +11,7 @@ networks:
 
 services:
   certbot:
-    build:
-      context: ./certbot/build
-      dockerfile: Dockerfile
+    image: adferrand/letsencrypt-dns:2.5.3
     container_name: certbot
     restart: unless-stopped
     env_file:
