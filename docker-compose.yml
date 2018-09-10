@@ -11,7 +11,9 @@ networks:
 
 services:
   certbot:
-    image: adferrand/letsencrypt-dns
+    build:
+      context: ./certbot/build
+      dockerfile: Dockerfile
     container_name: certbot
     restart: unless-stopped
     env_file:
@@ -66,6 +68,15 @@ services:
       - frontend
       backend:
         ipv4_address: 10.1.1.1
+  web-blog-rayriffy-com:
+    image: nginx:1.15.3-alpine
+    container_name: web-blog-rayriffy-com
+    restart: unless-stopped
+    ports:
+      - "8001:80"
+    volumes:
+      - ./web/blog.rayriffy.com/conf/site.conf:/etc/nginx/conf.d/site.conf
+      - 
   # app:
   #   build:
   #     context: ./app/build
