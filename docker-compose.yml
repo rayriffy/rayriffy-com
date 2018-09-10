@@ -57,9 +57,9 @@ services:
     image: nginx:1.15.3-alpine
     container_name: proxy
     restart: unless-stopped
-    expose:
-      - "80"
-      - "443"
+    ports:
+      - "80:80"
+      - "443:443"
     volumes:
       - ./nginx/conf:/etc/nginx/conf.d
     depends_on:
@@ -88,4 +88,4 @@ services:
       - ./web/data/blog.rayriffy.com:/web/blog.rayriffy.com
     networks:
       backend:
-        ipv4_address: 10.1.2.1
+        ipv4_address: 10.1.1.10
