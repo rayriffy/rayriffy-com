@@ -6,8 +6,8 @@ networks:
   backend:
     driver: bridge
     ipam:
-    config:
-      - subnet: 10.1.1.0/24
+      config:
+        - subnet: 10.1.1.0/24
 
 services:
   certbot:
