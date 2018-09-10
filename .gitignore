@@ -1,1 +1,3 @@
 certbot/build/env
+web/*
+!web/example.com
