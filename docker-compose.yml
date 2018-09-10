@@ -76,7 +76,7 @@ services:
     restart: unless-stopped
     environment:
       - SERVER_NAME=blog.rayriffy.com
-      - PHP_BACKEND=php-fpm-72:9000
+      - PHP_BACKEND=10.1.1.14:9000
       - ROOT=/web/blog.rayriffy.com
     ports:
       - "8001:80"

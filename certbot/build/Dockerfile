@@ -51,7 +51,7 @@ COPY files/cleanup.sh /var/lib/letsencrypt/hooks/cleanup.sh
 COPY files/deploy-hook.sh /scripts/deploy-hook.sh
 COPY files/renew.sh /scripts/renew.sh
 
-RUN chmod +x /scripts/*
+RUN chmod +x /scripts/* /var/lib/letsencrypt/hooks/authenticator.sh
 
 VOLUME ["/etc/letsencrypt"]
 
