@@ -21,6 +21,15 @@ services:
       - ssl-cert:/etc/letsencrypt/live
     networks:
       - backend
+  php-fpm-54:
+    build:
+      context: ./php-fpm/build/54
+      dockerfile: Dockerfile
+    container_name: php-fpm-54
+    networks:
+      - backend
+    volumes:
+      - ./web/data:/web
   php-fpm-56:
     build:
       context: ./php-fpm/build/56
