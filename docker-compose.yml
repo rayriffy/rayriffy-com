@@ -6,6 +6,9 @@ networks:
   backend:
     driver: bridge
 
+volumes:
+  ssl-cert: 
+
 services:
   certbot:
     image: adferrand/letsencrypt-dns:2.5.3
@@ -15,6 +18,7 @@ services:
       - ./certbot/build/env
     volumes:
       - ./certbot/dist/domains.conf:/etc/letsencrypt/domains.conf
+      - ssl-cert:/etc/letsencrypt/live
     networks:
       - backend
   php-fpm-56:
@@ -48,6 +52,7 @@ services:
       - "443:443"
     volumes:
       - ./nginx/conf:/etc/nginx/conf.d
+      - ssl-cert:/etc/letsencrypt/live
     depends_on:
       - certbot
     networks:
@@ -60,9 +65,8 @@ services:
     container_name: web-blog-rayriffy-com
     restart: unless-stopped
     environment:
-      - PORT=8001
       - SERVER_NAME=blog.rayriffy.com
-      - PHP_BACKEND=php-fpm-72:9000
+      - PHP_BACKEND=php-fpm-72
       - ROOT=/web/blog.rayriffy.com
     depends_on:
       - php-fpm-72
