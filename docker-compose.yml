@@ -57,9 +57,9 @@ services:
     image: nginx:1.15.3-alpine
     container_name: proxy
     restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
+    expose:
+      - "80"
+      - "443"
     volumes:
       - ./nginx/conf:/etc/nginx/conf.d
     depends_on:
@@ -75,11 +75,12 @@ services:
     container_name: web-blog-rayriffy-com
     restart: unless-stopped
     environment:
+      - PORT=8001
       - SERVER_NAME=blog.rayriffy.com
       - PHP_BACKEND=10.1.1.14:9000
       - ROOT=/web/blog.rayriffy.com
     ports:
-      - "8001:80"
+      - "8001:8001"
     depends_on:
       - php-fpm-72
     links:
