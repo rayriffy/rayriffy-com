@@ -58,8 +58,9 @@ services:
     container_name: proxy
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+    expose:
+      - "80"
+      - "443"
     volumes:
       - ./nginx/conf:/etc/nginx/conf.d
     depends_on:
@@ -82,8 +83,6 @@ services:
       - "8001:80"
     depends_on:
       - php-fpm-72
-      - proxy
-      - redis
     links:
       - php-fpm-72
     volumes:
