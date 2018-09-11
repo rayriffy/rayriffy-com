@@ -136,4 +136,4 @@ RUN ln -s /usr/local/bin/docker-entrypoint.sh /
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 9000
-CMD "chown -R www-data:www-data /web && php-fpm"
+CMD chown -R www-data:www-data /web ; php-fpm
