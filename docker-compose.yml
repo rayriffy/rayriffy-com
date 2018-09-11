@@ -79,9 +79,167 @@ services:
       - ROOT=/web/blog.rayriffy.com
     depends_on:
       - php-fpm-72
-    links:
-      - php-fpm-72
     volumes:
       - ./web/data/blog.rayriffy.com:/web/blog.rayriffy.com
+    networks:
+      - backend
+  web-cv-rayriffy-com:
+    build:
+      context: ./web/build
+      dockerfile: Dockerfile
+    container_name: web-cv-rayriffy-com
+    restart: unless-stopped
+    environment:
+      - SERVER_NAME=cv.rayriffy.com
+      - PHP_BACKEND=php-fpm-72
+      - ROOT=/web/cv.rayriffy.com
+    depends_on:
+      - php-fpm-72
+    volumes:
+      - ./web/data/cv.rayriffy.com:/web/cv.rayriffy.com
+    networks:
+      - backend
+  web-h-rayriffy-com:
+    build:
+      context: ./web/build
+      dockerfile: Dockerfile
+    container_name: web-h-rayriffy-com
+    restart: unless-stopped
+    environment:
+      - SERVER_NAME=h.rayriffy.com
+      - PHP_BACKEND=php-fpm-72
+      - ROOT=/web/h.rayriffy.com/public
+    depends_on:
+      - php-fpm-72
+    volumes:
+      - ./web/data/h.rayriffy.com:/web/h.rayriffy.com
+    networks:
+      - backend
+  web-l-rayriffy-com:
+    build:
+      context: ./web/build
+      dockerfile: Dockerfile
+    container_name: web-l-rayriffy-com
+    restart: unless-stopped
+    environment:
+      - SERVER_NAME=l.rayriffy.com
+      - PHP_BACKEND=php-fpm-72
+      - ROOT=/web/l.rayriffy.com
+    depends_on:
+      - php-fpm-72
+    volumes:
+      - ./web/data/l.rayriffy.com:/web/l.rayriffy.com
+    networks:
+      - backend
+  web-maiinjector-rayriffy-com:
+    build:
+      context: ./web/build
+      dockerfile: Dockerfile
+    container_name: web-maiinjector-rayriffy-com
+    restart: unless-stopped
+    environment:
+      - SERVER_NAME=maiinjector.rayriffy.com
+      - PHP_BACKEND=php-fpm-72
+      - ROOT=/web/maiinjector.rayriffy.com/public
+    depends_on:
+      - php-fpm-72
+    volumes:
+      - ./web/data/maiinjector.rayriffy.com:/web/maiinjector.rayriffy.com
+    networks:
+      - backend
+  web-maimaibot-rayriffy-com:
+    build:
+      context: ./web/build
+      dockerfile: Dockerfile
+    container_name: web-maimaibot-rayriffy-com
+    restart: unless-stopped
+    environment:
+      - SERVER_NAME=maimaibot.rayriffy.com
+      - PHP_BACKEND=php-fpm-72
+      - ROOT=/web/maimaibot.rayriffy.com/public
+    depends_on:
+      - php-fpm-72
+    volumes:
+      - ./web/data/maimaibot.rayriffy.com:/web/maimaibot.rayriffy.com
+    networks:
+      - backend
+  web-maiwiki-rayriffy-com:
+    build:
+      context: ./web/build
+      dockerfile: Dockerfile
+    container_name: web-maiwiki-rayriffy-com
+    restart: unless-stopped
+    environment:
+      - SERVER_NAME=maiwiki.rayriffy.com
+      - PHP_BACKEND=php-fpm-72
+      - ROOT=/web/maiwiki.rayriffy.com/public
+    depends_on:
+      - php-fpm-72
+    volumes:
+      - ./web/data/maiwiki.rayriffy.com:/web/maiwiki.rayriffy.com
+    networks:
+      - backend
+  web-ssj-rayriffy-com:
+    build:
+      context: ./web/build
+      dockerfile: Dockerfile
+    container_name: web-ssj-rayriffy-com
+    restart: unless-stopped
+    environment:
+      - SERVER_NAME=ssj.rayriffy.com
+      - PHP_BACKEND=php-fpm-72
+      - ROOT=/web/ssj.rayriffy.com
+    depends_on:
+      - php-fpm-72
+    volumes:
+      - ./web/data/ssj.rayriffy.com:/web/ssj.rayriffy.com
+    networks:
+      - backend
+  web-testtube-rayriffy-com:
+    build:
+      context: ./web/build
+      dockerfile: Dockerfile
+    container_name: web-testtube-rayriffy-com
+    restart: unless-stopped
+    environment:
+      - SERVER_NAME=testtube.rayriffy.com
+      - PHP_BACKEND=php-fpm-72
+      - ROOT=/web/testtube.rayriffy.com
+    depends_on:
+      - php-fpm-72
+    volumes:
+      - ./web/data/testtube.rayriffy.com:/web/testtube.rayriffy.com
+    networks:
+      - backend
+  web-booking-ivaothai-com:
+    build:
+      context: ./web/build
+      dockerfile: Dockerfile
+    container_name: web-booking-rayriffy-com
+    restart: unless-stopped
+    environment:
+      - SERVER_NAME=booking.ivaothai.com
+      - PHP_BACKEND=php-fpm-72
+      - ROOT=/web/booking.ivaothai.com/public
+    depends_on:
+      - php-fpm-72
+    volumes:
+      - ./web/data/booking.ivaothai.com:/web/booking.ivaothai.com
+    networks:
+      - backend
+  web-rfe-ivaothai-com:
+    build:
+      context: ./web/build
+      dockerfile: Dockerfile
+    container_name: web-rfe-rayriffy-com
+    restart: unless-stopped
+    environment:
+      - SERVER_NAME=rfe.ivaothai.com
+      - PHP_BACKEND=php-fpm-72
+      - ROOT=/web/rfe.ivaothai.com/public
+    depends_on:
+      - php-fpm-72
+    volumes:
+      - ./web/data/rfe.ivaothai.com:/web/rfe.ivaothai.com
     networks:
       - backend
