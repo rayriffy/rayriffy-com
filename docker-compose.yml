@@ -229,7 +229,7 @@ services:
     build:
       context: ./web/build
       dockerfile: Dockerfile
-    container_name: web-rfe-rayriffy-com
+    container_name: web-rfe-ivaothai-com
     restart: unless-stopped
     environment:
       - SERVER_NAME=rfe.ivaothai.com
