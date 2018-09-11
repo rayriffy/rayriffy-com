@@ -241,3 +241,13 @@ services:
       - ./web/data/rfe.ivaothai.com:/web/rfe.ivaothai.com
     networks:
       - backend
+  yarn:
+    build:
+      context: ./yarn/build
+      dockerfile: Dockerfile
+    container_name: yarn
+    restart: unless-stopped
+    volumes:
+      - ./web/data:/web
+    networks:
+      - backend
