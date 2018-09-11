@@ -251,3 +251,13 @@ services:
       - ./web/data/html/rfe.ivaothai.com:/web/rfe.ivaothai.com
     networks:
       - backend
+  web-maimaibotaog-rayriffy-com:
+    build:
+      context: ./web/build/node
+      dockerfile: Dockerfile
+    container_name: web-maimaibotaog-rayriffy-com
+    restart: unless-stopped
+    volumes:
+      - ./web/data/node/maimaibotaog.ivaothai.com:/app
+    networks:
+      - backend
