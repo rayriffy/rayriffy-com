@@ -6,9 +6,6 @@ networks:
   backend:
     driver: bridge
 
-volumes:
-  ssl-cert: 
-
 services:
   certbot:
     image: adferrand/letsencrypt-dns:2.5.3
@@ -18,7 +15,7 @@ services:
       - ./certbot/build/env
     volumes:
       - ./certbot/dist/domains.conf:/etc/letsencrypt/domains.conf
-      - ssl-cert:/etc/letsencrypt/live
+      - ./tmp/letsencrypt:/etc/letsencrypt
     networks:
       - backend
   php-fpm-54:
@@ -61,7 +58,7 @@ services:
       - "443:443"
     volumes:
       - ./nginx/conf:/etc/nginx/conf.d
-      - ssl-cert:/etc/letsencrypt/live
+      - ./tmp/letsencrypt:/etc/letsencrypt
     depends_on:
       - certbot
     networks:
