@@ -7,3 +7,5 @@ RUN apt-get update && apt-get install -y curl apt-transport-https && \
     apt-get update && apt-get install -y yarn
 
 WORKDIR /web
+
+ENTRYPOINT ["tail", "-f", "/dev/null"]
