@@ -131,7 +131,6 @@ RUN usermod -u 1000 www-data
 WORKDIR /var/www
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
-COPY ./www.conf /usr/local/etc/php-fpm.d/www.conf
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s /usr/local/bin/docker-entrypoint.sh /
 ENTRYPOINT ["docker-entrypoint.sh"]

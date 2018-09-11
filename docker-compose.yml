@@ -26,7 +26,7 @@ services:
     networks:
       - backend
     volumes:
-      - ./web/data:/web
+      - ./web/data/html:/web
   php-fpm-56:
     build:
       context: ./php-fpm/build/56
@@ -35,7 +35,7 @@ services:
     networks:
       - backend
     volumes:
-      - ./web/data:/web
+      - ./web/data/html:/web
   php-fpm-72:
     build:
       context: ./php-fpm/build/72
@@ -44,7 +44,7 @@ services:
     networks:
       - backend
     volumes:
-      - ./web/data:/web
+      - ./web/data/html:/web
   yarn:
     build:
       context: ./yarn/build
@@ -52,7 +52,7 @@ services:
     container_name: yarn
     restart: unless-stopped
     volumes:
-      - ./web/data:/web
+      - ./web/data/html:/web
     networks:
       - backend
   redis:
@@ -77,7 +77,7 @@ services:
       - backend
   web-blog-rayriffy-com:
     build:
-      context: ./web/build
+      context: ./web/build/html
       dockerfile: Dockerfile
     container_name: web-blog-rayriffy-com
     restart: unless-stopped
@@ -88,12 +88,12 @@ services:
     depends_on:
       - php-fpm-72
     volumes:
-      - ./web/data/blog.rayriffy.com:/web/blog.rayriffy.com
+      - ./web/data/html/blog.rayriffy.com:/web/blog.rayriffy.com
     networks:
       - backend
   web-cv-rayriffy-com:
     build:
-      context: ./web/build
+      context: ./web/build/html
       dockerfile: Dockerfile
     container_name: web-cv-rayriffy-com
     restart: unless-stopped
@@ -104,12 +104,12 @@ services:
     depends_on:
       - php-fpm-72
     volumes:
-      - ./web/data/cv.rayriffy.com:/web/cv.rayriffy.com
+      - ./web/data/html/cv.rayriffy.com:/web/cv.rayriffy.com
     networks:
       - backend
   web-h-rayriffy-com:
     build:
-      context: ./web/build
+      context: ./web/build/html
       dockerfile: Dockerfile
     container_name: web-h-rayriffy-com
     restart: unless-stopped
@@ -120,12 +120,12 @@ services:
     depends_on:
       - php-fpm-72
     volumes:
-      - ./web/data/h.rayriffy.com:/web/h.rayriffy.com
+      - ./web/data/html/h.rayriffy.com:/web/h.rayriffy.com
     networks:
       - backend
   web-l-rayriffy-com:
     build:
-      context: ./web/build
+      context: ./web/build/html
       dockerfile: Dockerfile
     container_name: web-l-rayriffy-com
     restart: unless-stopped
@@ -136,12 +136,12 @@ services:
     depends_on:
       - php-fpm-72
     volumes:
-      - ./web/data/l.rayriffy.com:/web/l.rayriffy.com
+      - ./web/data/html/l.rayriffy.com:/web/l.rayriffy.com
     networks:
       - backend
   web-maiinjector-rayriffy-com:
     build:
-      context: ./web/build
+      context: ./web/build/html
       dockerfile: Dockerfile
     container_name: web-maiinjector-rayriffy-com
     restart: unless-stopped
@@ -152,12 +152,12 @@ services:
     depends_on:
       - php-fpm-72
     volumes:
-      - ./web/data/maiinjector.rayriffy.com:/web/maiinjector.rayriffy.com
+      - ./web/data/html/maiinjector.rayriffy.com:/web/maiinjector.rayriffy.com
     networks:
       - backend
   web-maimaibot-rayriffy-com:
     build:
-      context: ./web/build
+      context: ./web/build/html
       dockerfile: Dockerfile
     container_name: web-maimaibot-rayriffy-com
     restart: unless-stopped
@@ -168,12 +168,12 @@ services:
     depends_on:
       - php-fpm-72
     volumes:
-      - ./web/data/maimaibot.rayriffy.com:/web/maimaibot.rayriffy.com
+      - ./web/data/html/maimaibot.rayriffy.com:/web/maimaibot.rayriffy.com
     networks:
       - backend
   web-maiwiki-rayriffy-com:
     build:
-      context: ./web/build
+      context: ./web/build/html
       dockerfile: Dockerfile
     container_name: web-maiwiki-rayriffy-com
     restart: unless-stopped
@@ -184,12 +184,12 @@ services:
     depends_on:
       - php-fpm-72
     volumes:
-      - ./web/data/maiwiki.rayriffy.com:/web/maiwiki.rayriffy.com
+      - ./web/data/html/maiwiki.rayriffy.com:/web/maiwiki.rayriffy.com
     networks:
       - backend
   web-ssj-rayriffy-com:
     build:
-      context: ./web/build
+      context: ./web/build/html
       dockerfile: Dockerfile
     container_name: web-ssj-rayriffy-com
     restart: unless-stopped
@@ -200,12 +200,12 @@ services:
     depends_on:
       - php-fpm-72
     volumes:
-      - ./web/data/ssj.rayriffy.com:/web/ssj.rayriffy.com
+      - ./web/data/html/ssj.rayriffy.com:/web/ssj.rayriffy.com
     networks:
       - backend
   web-testtube-rayriffy-com:
     build:
-      context: ./web/build
+      context: ./web/build/html
       dockerfile: Dockerfile
     container_name: web-testtube-rayriffy-com
     restart: unless-stopped
@@ -216,12 +216,12 @@ services:
     depends_on:
       - php-fpm-72
     volumes:
-      - ./web/data/testtube.rayriffy.com:/web/testtube.rayriffy.com
+      - ./web/data/html/testtube.rayriffy.com:/web/testtube.rayriffy.com
     networks:
       - backend
   web-booking-ivaothai-com:
     build:
-      context: ./web/build
+      context: ./web/build/html
       dockerfile: Dockerfile
     container_name: web-booking-ivaothai-com
     restart: unless-stopped
@@ -232,12 +232,12 @@ services:
     depends_on:
       - php-fpm-72
     volumes:
-      - ./web/data/booking.ivaothai.com:/web/booking.ivaothai.com
+      - ./web/data/html/booking.ivaothai.com:/web/booking.ivaothai.com
     networks:
       - backend
   web-rfe-ivaothai-com:
     build:
-      context: ./web/build
+      context: ./web/build/html
       dockerfile: Dockerfile
     container_name: web-rfe-ivaothai-com
     restart: unless-stopped
@@ -248,6 +248,6 @@ services:
     depends_on:
       - php-fpm-72
     volumes:
-      - ./web/data/rfe.ivaothai.com:/web/rfe.ivaothai.com
+      - ./web/data/html/rfe.ivaothai.com:/web/rfe.ivaothai.com
     networks:
       - backend
