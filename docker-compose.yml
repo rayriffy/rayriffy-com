@@ -213,7 +213,7 @@ services:
     build:
       context: ./web/build
       dockerfile: Dockerfile
-    container_name: web-booking-rayriffy-com
+    container_name: web-booking-ivaothai-com
     restart: unless-stopped
     environment:
       - SERVER_NAME=booking.ivaothai.com
