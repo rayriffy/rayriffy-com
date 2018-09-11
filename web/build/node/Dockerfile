@@ -7,4 +7,4 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s /usr/local/bin/docker-entrypoint.sh /
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "/app/index.js" ]
