@@ -2,8 +2,8 @@ FROM node:alpine
 
 WORKDIR /app
 
-COPY ./docker-entrypoint.sh /usr/local/bin/
+COPY ./docker-entrypoint.sh /usr/local/
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/docker-entrypoint.sh"]
 
 CMD [ "node", "index.js" ]
