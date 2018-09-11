@@ -258,6 +258,6 @@ services:
     container_name: web-maimaibotaog-rayriffy-com
     restart: unless-stopped
     volumes:
-      - ./web/data/node/maimaibotaog.ivaothai.com:/app
+      - ./web/data/node/maimaibotaog.rayriffy.com:/app
     networks:
       - backend
