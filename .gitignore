@@ -1,3 +1,4 @@
 certbot/build/env
 web/data/*
 nginx/conf/module/secret
+tmp/
