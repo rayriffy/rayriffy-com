@@ -24,10 +24,13 @@ services:
     restart: unless-stopped
     cap_add:
       - SYS_PTRACE
+    networks:
+      - backend
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./tmp/nginx/log:/var/log/nginx
   php-fpm-54:
     build:
       context: ./php-fpm/build/54
@@ -80,6 +83,7 @@ services:
       - ./nginx/conf/web:/etc/nginx/conf.d
       - ./nginx/conf/module:/etc/nginx/snippets
       - ./tmp/letsencrypt:/etc/letsencrypt
+      - ./tmp/nginx/log:/var/log/nginx
     depends_on:
       - certbot
     networks:
