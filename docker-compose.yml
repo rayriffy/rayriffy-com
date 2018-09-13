@@ -18,6 +18,16 @@ services:
       - ./tmp/letsencrypt:/etc/letsencrypt
     networks:
       - backend
+  netdata:
+    image: firehol/netdata
+    container_name: netdata
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
   php-fpm-54:
     build:
       context: ./php-fpm/build/54
