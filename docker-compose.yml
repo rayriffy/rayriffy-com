@@ -60,9 +60,7 @@ services:
     networks:
       - backend
   proxy:
-    build:
-      context: ./nginx/build
-      dockerfile: Dockerfile
+    image: nginx:1.15.3
     container_name: proxy
     restart: unless-stopped
     ports:
